@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Simple SPA</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+nav { background: #333; padding: 1em; }
+nav a { color: white; margin: 0 1em; text-decoration: none; }
+.content { padding: 2em; }
+.page { display: none; }
+.active { display: block; }
+</style>
+</head>
+<body>
+<nav>
+<a href="#home" onclick="navigate('home')">Home</a>
+<a href="#about" onclick="navigate('about')">About</a>
+<a href="#contact" onclick="navigate('contact')">Contact</a>
+</nav>
+<div class="content">
+<div id="home" class="page active">
+<h1> Welcome To Home page </h1>
+<p>This is the home page of our Sample Simple Page Application.</p>
+</div>
+<div id="about" class="page">
+<h1>About Us</h1><p>Learn more about us through.</p>
+<p>LinkedIn</p>
+</div>
+<div id="contact" class="page">
+<h1>Contact</h1>
+<p>Get in touch with us for more info.</p>
+<p>Contact us through:
+<p>Mail : abc@gmail.com</p>
+<p>contact num : 1234567890</p>
+</div>
+</div>
+<script>
+function navigate(pageId) {
+const pages = document.querySelectorAll('.page');
+pages.forEach(page => page.classList.remove('active'));
+document.getElementById(pageId).classList.add('active');
+}
+// Optional: Handle browser back/forward navigation
+window.addEventListener('hashchange', () => {
+const page = location.hash.replace('#', '') || 'home';
+navigate(page);
+});
+// Load initial page
+window.addEventListener('load', () => {
+const page = location.hash.replace('#', '') || 'home';
+navigate(page);
+});
+</script></body>
+</html>
